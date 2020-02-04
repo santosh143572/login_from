@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org" >
+<html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
+    <link href="./css/postjob.css" th:href="@{/css/postjob.css}" rel="stylesheet" />
 </head>
 <body>
 
-<h2>Modal Login Form</h2>
+<form class="form-horizontal" role="form" method="POST" th:action="@{/jobpost}" th:object="${home}">
+    <div class="container">
+        <h1>Post a Job</h1>
+        <p>Please insert all the details.</p>
+        <hr>
+        <label for="jobtitle"><b>Job Title</b></label>
+        <input type="text" placeholder="Enter Job_title" name="jobtitle" id="jobtitle" required>
 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+        <label for="description"><b>Job Description</b></label><br>
+        <textarea placeholder=" Job Description" name="description" id="description" required></textarea><br>
 
-<div id="id01" class="modal">
+        <label for="qualification"><b>Qualification Required</b></label>
+        <input type="text" placeholder=" Qualification Required" name="qualification" id="qualification" required><br>
 
-    <form class="modal-content animate" th:action="@{/login}" th:object=""${LoginFrom} method="post">
-        <div class="imgcontainer">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <img src="img_avatar2.png" alt="Avatar" class="avatar">
-        </div>
+        <label for="location"><b>Job Location</b></label>
+        <select id="location" name="location">
+            <option value="0">Select Location:</option>
+            <option value="1">Bangaluru</option>
+            <option value="2">mumbai</option>
+            <option value="3">hyderabad</option>
+            <option value="4">kolkata</option>
+            <option value="5">pune</option>
+        </select> <br><br>
 
-        <div class="container">
-            <label for="Job_id"><b>Job_id</b></label>
-            <input type="text" placeholder="Enter Job_Id" id="Job_id" name="job_id" required />
+        <label for="jobnature"><b>Job Nature</b></label>
+        <select id="jobnature" name="jobnature">
+            <option value="0">Select Nature:</option>
+            <option value="1">Full Time</option>
+            <option value="2">Part Time</option>
+        </select><br><br>
 
-            <label for="job_title"><b>job_title</b></label>
-            <input type="text" placeholder="Enter job_title" id="job_title" name="job_title" required />
+        <label for="vacancy"><b>Vacancy</b></label>
+        <input type="text" placeholder="Vacancy Number" name="vacancy" id="vacancy" required>
 
-            <label for="job_loc"><b>job_location</b></label>
-            <input type="text" placeholder="job_loc" id="job_loc" name="job_loc" required />
+        <label for="salary"><b>Salary</b></label>
+        <input type="text" placeholder="Salary" name="salary" id="salary" required>
 
-            <button type="submit">Login</button>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-        </div>
+        <button type="submit" class="registerbtn">POST</button>
+    </div>
 
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
-        </div>
-    </form>
-</div>
+    <div class="container signin">
+        <p>Log out the page <a href="../home/login.html" th:href="@{/home/login}">LogOut</a>.</p>
+    </div>
+</form>
 </body>
 </html>

@@ -3,6 +3,8 @@ package com.example.login.controller;
 import javax.validation.Valid;
 
 
+import com.example.login.model.JobPost;
+import com.example.login.service.JobPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -78,4 +80,29 @@ public class UserController {
         model.setViewName("errors/access_denied");
         return model;
     }
+
+
+
+
+
+
+    @Autowired
+    private JobPostService jobPostService;
+
+    @RequestMapping(value= {"/jobpost"}, method=RequestMethod.POST)
+    public ModelAndView postjob(@Valid JobPost jobPost, BindingResult bindingResult) {
+        ModelAndView model = new ModelAndView();
+
+
+
+            jobPostService.saveUser(jobPost);
+            model.addObject("msg", "Job Is Created successfully!");
+            model.addObject("jobpost", new JobPost());
+            model.setViewName("jobpost/jobpost");
+
+
+        return model;
+    }
+
+
 }
